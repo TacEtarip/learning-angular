@@ -8,10 +8,10 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./media-item-form.component.css']
 })
 export class MediaItemFormComponent implements OnInit {
-  form: FormGroup;
+  xForm: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.xForm = new FormGroup({
       medium: new FormControl('Movie'),
       name: new FormControl(''),
       category: new FormControl(''),

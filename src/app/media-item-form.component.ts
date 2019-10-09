@@ -21,4 +21,8 @@ export class MediaItemFormComponent implements OnInit {
   onSubmit(mediaItem) {
     console.log(mediaItem);
   }
+
+  onTest() {
+    console.log('test');
+  }
 }

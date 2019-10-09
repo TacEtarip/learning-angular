@@ -22,7 +22,7 @@ export class MediaItemFormComponent implements OnInit {
   }
 
   yearValidator(control: FormControl) {
-    if (control.value.trim().lenght === 0) {
+    if (control.value.trim().length === 0) {
       return null;
     }
     const year = parseInt(control.value, 10);

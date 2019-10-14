@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaItemService, MediaItem } from './media-item.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'mw-media-item-list',
@@ -8,8 +9,8 @@ import { MediaItemService, MediaItem } from './media-item.service';
 })
 export class MediaItemListComponent implements OnInit {
   medium = '';
-  mediaItems: MediaItem[];
-
+  // mediaItems: MediaItem[];
+  mediaItems$: Observable<MediaItem[]>;
   constructor(private mediaItemService: MediaItemService) { }
 
   ngOnInit() {
@@ -26,10 +27,12 @@ export class MediaItemListComponent implements OnInit {
 
   getMediaItems(medium: string) {
     this.medium = medium;
+    this.mediaItems$ = this.mediaItemService.get(medium);
+    /*
     this.mediaItemService.get(medium)
       .subscribe(mediaItems => {
         this.mediaItems = mediaItems;
-      });
+      });*/
   }
   ejecutarTest() {
     this.mediaItemService.testGet('Movies')

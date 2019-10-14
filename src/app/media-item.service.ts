@@ -6,7 +6,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MediaItemService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+
+  testGet(medium: string) {
+    const getOptions = {
+      params: { medium }
+    };
+    return this.http.get('mediaitems', getOptions);
+  }
 
   get(medium: string) {
     const getOptions = {

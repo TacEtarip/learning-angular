@@ -28,6 +28,8 @@ export class MediaItemFormComponent implements OnInit {
     });
   }
 
+ 
+
   yearValidator(control: FormControl) {
     if (control.value.trim().length === 0) {
       return null;

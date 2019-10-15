@@ -28,7 +28,7 @@ export class MediaItemFormComponent implements OnInit {
     });
   }
 
- 
+
 
   yearValidator(control: FormControl) {
     if (control.value.trim().length === 0) {
@@ -50,7 +50,7 @@ export class MediaItemFormComponent implements OnInit {
   }
 
   onSubmit(mediaItem) {
-   // console.log(mediaItem.name);
+    // console.log(mediaItem.name);
     this.mediaItemService.add(mediaItem)
       .subscribe();
   }

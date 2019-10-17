@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class MediaItemService {
     return this.http.get('mediaitems', getOptions);
   }
 
-  get(medium: string) {
+  get(medium: string): Observable<any> {
     const getOptions = {
       params: { medium }
     };
@@ -29,11 +29,32 @@ export class MediaItemService {
         catchError(this.handleError)
       );
   }
-
-  add(mediaItem: MediaItem) {
-    return this.http.post('mediaitems', mediaItem)
+  add(mediaItem: MediaItem): Observable<MediaItem> {
+    return this.http.post<MediaItem>('mediaitems', mediaItem)
       .pipe(catchError(this.handleError));
   }
+  /*
+  add(mediaItem: MediaItem): Observable<MediaItem> {
+    return this.http.post<MediaItem>('mediaitems', mediaItem,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'aplication/json'
+        })
+      })
+      .pipe(
+        map((response: MediaItem) => {
+          return response;
+        }), catchError(this.handleError));
+  }
+  add(mediaItem: MediaItem): Observable<MediaItem> {
+    return this.http.post<MediaItem>('mediaitems', mediaItem,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'aplication/json'
+        })
+      })
+      .pipe(catchError(this.handleError));
+  }*/
 
   delete(mediaItem: MediaItem) {
     return this.http.delete(`mediaitems/${mediaItem.id}`)

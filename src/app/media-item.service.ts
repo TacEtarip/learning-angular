@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaItemService {
-  constructor(private http: HttpClient) {}
+  // resultJob: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(null);
+
+  constructor(private http: HttpClient) { }
 
   get(medium: string) {
     const getOptions = {
@@ -31,9 +33,9 @@ export class MediaItemService {
 
   delete(mediaItem: MediaItem) {
     return this.http.delete(`mediaitems/${mediaItem.id}`)
-    .pipe(
-      catchError(this.handleError)
-    );
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

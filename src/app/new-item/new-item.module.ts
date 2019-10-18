@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MediaItemFormComponent } from './media-item-form.component';
 import { newItemRouting } from './new-item.routing';
+import { Media_Tesst } from './media-tesst-item.component';
+
 
 @NgModule({
   imports: [
@@ -11,7 +13,8 @@ import { newItemRouting } from './new-item.routing';
     newItemRouting
   ],
   declarations: [
-    MediaItemFormComponent
+    MediaItemFormComponent,
+    Media_Tesst
   ]
 })
-export class NewItemModule {}
+export class NewItemModule { }

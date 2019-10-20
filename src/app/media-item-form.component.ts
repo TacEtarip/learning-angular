@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MediaItemService, MediaItem } from './media-item.service';
 import { lookupListToken } from './providers';
@@ -10,6 +10,7 @@ import { lookupListToken } from './providers';
 })
 export class MediaItemFormComponent implements OnInit {
   form: FormGroup;
+  @Output() newMediaItem = new EventEmitter();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +50,7 @@ export class MediaItemFormComponent implements OnInit {
     }
   }
 
-  onSubmit(mediaItem) {
+  onSubmit(mediaItem: MediaItem) {
 
     /*this.mediaItemService.add(mediaItem).subscribe(
       mediaItemX => { console.log(mediaItemX); }
@@ -58,7 +59,10 @@ export class MediaItemFormComponent implements OnInit {
     // console.log(mediaItem.name);
     this.mediaItemService.add(mediaItem)
       .subscribe((res: MediaItem) => { console.log(res); });*/
-    console.log(mediaItem);
+    this.newMediaItem.emit(mediaItem);
+
+    console.log('mediaItem');
+
     this.mediaItemService.add(mediaItem)
       .subscribe();
   }

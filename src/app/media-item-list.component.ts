@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaItemService, MediaItem } from './media-item.service';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'mw-media-item-list',
@@ -12,14 +12,15 @@ export class MediaItemListComponent implements OnInit {
   // mediaItems: MediaItem[];
   // mediaSubject = new Subject();
   // mediaItemsShow = this.mediaSubject.asObservable;
-  mediaItems$: Observable<MediaItem[]>;
+  mediaItems$: BehaviorSubject<MediaItem[]> = new BehaviorSubject<MediaItem[]>(null);
+
 
   constructor(private mediaItemService: MediaItemService) { }
 
 
   ngOnInit() {
     this.getMediaItems(this.medium);
-    setInterval(() => { this.getMediaItems(this.medium); }, 300);
+    // setInterval(() => { this.getMediaItems(this.medium); }, 300);
   }
 
 
@@ -34,7 +35,11 @@ export class MediaItemListComponent implements OnInit {
 
   getMediaItems(medium: string) {
     this.medium = medium;
-    this.mediaItems$ = this.mediaItemService.get(medium);
+    this.mediaItemService.get(medium)
+      .subscribe((res) => {
+        this.mediaItems$.next(res);
+      });
+    // this.mediaItems$ = this.mediaItemService.get(medium);
     // console.log(this.mediaItems$.subscribe(res => { console.log(res); }));
   }
 

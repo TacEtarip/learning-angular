@@ -10,6 +10,7 @@ export class MediaItemService {
   constructor(private http: HttpClient) { }
 
   get(medium: string) {
+
     const getOptions = {
       params: { medium }
     };

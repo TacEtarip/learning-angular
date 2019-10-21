@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MediaItemService } from '../media-item.service';
+import { MediaItemService, MediaItem } from '../media-item.service';
 import { lookupListToken } from '../providers';
 
 @Component({
@@ -16,7 +16,7 @@ export class MediaItemFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private mediaItemService: MediaItemService,
     @Inject(lookupListToken) public lookupLists,
-    private router: Router) {}
+    private router: Router) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -49,7 +49,8 @@ export class MediaItemFormComponent implements OnInit {
     }
   }
 
-  onSubmit(mediaItem) {
+  onSubmit(mediaItem: MediaItem) {
+    // delete mediaItem.name; borrara name de el paso de variable mediaItem
     this.mediaItemService.add(mediaItem)
       .subscribe(() => {
         this.router.navigate(['/', mediaItem.medium]);

@@ -27,6 +27,7 @@ export class MediaItemFormComponent implements OnInit {
       category: this.formBuilder.control(''),
       year: this.formBuilder.control('', this.yearValidator),
     });
+
   }
 
 

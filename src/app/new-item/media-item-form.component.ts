@@ -56,4 +56,8 @@ export class MediaItemFormComponent implements OnInit {
         this.router.navigate(['/', mediaItem.medium]);
       });
   }
+
+  onTest() {
+    console.log(this.form.value); // otra forma de obtener el valor de la form
+  }
 }

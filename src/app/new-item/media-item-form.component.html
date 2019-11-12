@@ -1,6 +1,7 @@
 <header>
   <h2>Add Media to Watch</h2>
 </header>
+<!--<form [formGroup]="form"> de esta forma no pasa ni un valor o realizar alguna accion prederterminada-->
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <ul>
     <li>
@@ -39,5 +40,5 @@
     </li>
   </ul>
   <button type="submit" [disabled]="!form.valid">Save</button>
+  <button type="submit" (click)="onTest()">test</button>
 </form>
-<router-outlet></router-outlet>

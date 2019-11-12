@@ -4,7 +4,7 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
   selector: '[mwFavorite]'
 })
 export class FavoriteDirective {
-  @HostBinding('class.is-favorite') isFavorite = true;
+  @HostBinding('class.is-favorite') isFavorite = null;
 
   @HostBinding('class.is-favorite-hovering') hovering = false;
 

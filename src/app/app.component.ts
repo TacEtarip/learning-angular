@@ -9,12 +9,12 @@ import { of, from } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild(MediaItemListComponent, { static: false }) mediaItem: MediaItemListComponent;
+  @ViewChild(MediaItemListComponent, { static: false }) mediaItems: MediaItemListComponent;
 
   onSubmit(mediaitem: MediaItem) {
     console.log('200');
-    let tempList: MediaItem[] = this.mediaItem.mediaItems$.value;
+    let tempList: MediaItem[] = this.mediaItems.mediaItems$.value;
     tempList.push(mediaitem);
-    this.mediaItem.mediaItems$.next(tempList);
+    this.mediaItems.mediaItems$.next(tempList);
   }
 }
